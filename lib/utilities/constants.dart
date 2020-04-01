@@ -20,3 +20,20 @@ const kConditionTextStyle = TextStyle(
 );
 
 const kApiKeyWeather = 'cdb2ac06bd3193328f2de7e1d583caf8';
+
+const kTextFieldDecoration = InputDecoration(
+  filled: true,
+  fillColor: Colors.white,
+  icon: Icon(
+    Icons.location_city,
+    color: Colors.white,
+  ),
+  hintText: 'Enter City name',
+  hintStyle: TextStyle(color: Colors.black),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(
+      Radius.circular(10.0),
+    ),
+    borderSide: BorderSide.none,
+  ),
+);

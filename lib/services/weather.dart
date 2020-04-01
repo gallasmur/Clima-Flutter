@@ -8,11 +8,24 @@ class WeatherModel {
 
   Future<dynamic> getLocation() async {
     Location location = Location();
-    await location.getCurrentLocation();
+    await location.getCurrentLocation().timeout(
+      Duration(seconds: 5),
+      onTimeout: () {
+        return null;
+      },
+    );
 
     NetworkHelper networkHelper = NetworkHelper(
         url: openWeatherMap +
             'lat=${location.latitude}&lon=${location.longitude}&appid=$kApiKeyWeather&units=metric');
+    var weatherData = await networkHelper.getData();
+
+    return weatherData;
+  }
+
+  Future<dynamic> getCityWeather(String city) async {
+    NetworkHelper networkHelper = NetworkHelper(
+        url: openWeatherMap + 'q=$city&appid=$kApiKeyWeather&units=metric');
     var weatherData = await networkHelper.getData();
 
     return weatherData;
